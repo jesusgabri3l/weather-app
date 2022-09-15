@@ -5,12 +5,13 @@ import { Navigate, useLocation } from 'react-router-dom';
 interface Props {
   children: ReactElement;
 }
-const ProtectedRoute = ({ children }: Props): ReactElement => {
+// Component used for protected routes
+//This component validates wether the user is logged or not, in order to redirect or not!
+function ProtectedRoute({ children }: Props) {
   const user = useSelector((state: any) => state.user.userInfo);
   const location = useLocation();
-  // eslint-disable-next-line no-prototype-builtins
   if (!user.googleId) return <Navigate to="/" state={{ from: location }} replace />;
   return children;
-};
+}
 
 export default ProtectedRoute;

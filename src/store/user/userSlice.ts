@@ -4,7 +4,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     userInfo: { googleId: null },
-    favCountries: [],
+    favLocations: [],
   },
   reducers: {
     setUserInfo: (state: any, action: any) => {

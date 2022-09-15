@@ -1,11 +1,10 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import ProtectedRoute from './components/router/ProtectedRoute';
-import { useAuthOut } from './modules/login/hooks/useAuth';
+import HomeView from './modules/home/HomeView';
 import LoginView from './modules/login/LoginView';
 
 function App() {
-  const authOut = useAuthOut();
   return (
     <div className="main-wrapper">
       <HashRouter>
@@ -15,10 +14,7 @@ function App() {
             path="home"
             element={
               <ProtectedRoute>
-                <div className="pt-1">
-                  <h1>Home page</h1>
-                  <button onClick={authOut}>Logout</button>
-                </div>
+                <HomeView />
               </ProtectedRoute>
             }
           />

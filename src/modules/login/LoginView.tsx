@@ -1,19 +1,10 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
 import logo from '../../assets/logo.svg';
 import BaseLoader from '../../components/base/BaseLoader';
 import { useAuthIn } from './hooks/useAuth';
-import { useRedirection } from './hooks/useRedirection';
 
 function LoginView() {
   const { signIn, loading } = useAuthIn();
-  const { redirection } = useRedirection();
-  const user = useSelector((state: any) => state.user.userInfo);
 
-  useEffect(() => {
-    if (user.googleId) redirection();
-  }, [user.googleId]);
   return (
     <div className="h-screen flex-center p-4">
       {loading ? (
