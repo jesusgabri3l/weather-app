@@ -1,17 +1,44 @@
+import AutoComplete from 'react-google-autocomplete';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import location from '../../assets/location.svg';
+import { addLocation } from '../../store/location/locationSlice';
+import { useAuthOut } from '../login/hooks/useAuth';
+import SlideItem from './components/SlideItem';
 function HomeView() {
+  const dispatch = useDispatch();
+  const locations = useSelector((state: any) => state.location.yourLocations);
+  const authOut = useAuthOut();
   const settings = {
-    className: 'flex-center',
-    centerMode: true,
+    dots: true,
     infinite: true,
-    centerPadding: '100px',
-    slidesToShow: 2,
-    speed: 500,
+    speed: 600,
+    slidesToShow: locations.length < 3 ? 1 : 3,
+    slidesToScroll: 1,
+    centerPadding: '0px',
+    centerMode: true,
+    focusOnSelect: true,
+    adapativeHeight: true,
   };
+  const onPlaceSelected = (place: any) => {
+    const { address_components } = place;
+    dispatch(
+      addLocation({
+        address_components,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      }),
+    );
+  };
+
   return (
-    <div className="h-screen p-12">
+    <div className="min-h-screen p-12">
+      <AutoComplete
+        apiKey="AIzaSyBsv-6iT9vli_YJtGF5DQH0iI4ypR2MqGE"
+        onPlaceSelected={onPlaceSelected}
+        language="en"
+      />
       <div>
         <h1 className="text-white text-3xl font-bold tracking-wider inline-block">
           <img
@@ -24,13 +51,20 @@ function HomeView() {
           Your favourite locations
         </h1>
       </div>
-      <Slider {...settings}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-          <div className="bg-element text-primary p-6" key={item}>
-            <h3>{item}</h3>
-          </div>
-        ))}
-      </Slider>
+      {locations.length > 0 ? (
+        <Slider {...settings}>
+          {locations.map((location: any) => (
+            <SlideItem location={location} key={location.basicInfo.lat} />
+          ))}
+        </Slider>
+      ) : (
+        <p className="text-white">You dont have locations yet</p>
+      )}
+      <div>
+        <button onClick={authOut} className="button button--primary">
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
