@@ -7,7 +7,7 @@ import LoginView from './modules/login/LoginView';
 function App() {
   const authOut = useAuthOut();
   return (
-    <div className="App">
+    <div className="main-wrapper">
       <HashRouter>
         <Routes>
           <Route path="/" element={<LoginView />} />
@@ -15,10 +15,10 @@ function App() {
             path="home"
             element={
               <ProtectedRoute>
-                <>
+                <div className="pt-1">
                   <h1>Home page</h1>
                   <button onClick={authOut}>Logout</button>
-                </>
+                </div>
               </ProtectedRoute>
             }
           />

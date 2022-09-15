@@ -29,9 +29,11 @@ export const useAuthIn = () => {
   };
   const onAutoLoadFinished = () => setLoading(false);
   const onRequest = () => setLoading(true);
+  const onFailure = () => setLoading(false);
   // SIGN IN AUTH MAIN METHOD
   const { signIn } = useGoogleLogin({
     onSuccess,
+    onFailure,
     onAutoLoadFinished,
     onRequest,
     clientId,

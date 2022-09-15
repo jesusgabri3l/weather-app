@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }: Props): ReactElement => {
   const user = useSelector((state: any) => state.user.userInfo);
   const location = useLocation();
   // eslint-disable-next-line no-prototype-builtins
-  if (!user.value.googleId) return <Navigate to="/" state={{ from: location }} replace />;
+  if (!user.googleId) return <Navigate to="/" state={{ from: location }} replace />;
   return children;
 };
 

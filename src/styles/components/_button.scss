@@ -1,25 +1,21 @@
-@mixin defineButtonColor  ($bg, $text){
+@mixin defineButtonColor  ($bg, $border, $text){
     background-color: $bg;
     color: $text; 
+    border: 2px solid $border;
 }
 .button{
     min-width: 60px;
     width: auto;
     padding: 10px 40px;
     text-align: center;
-    letter-spacing: 2px;
-    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 0.5rem;
+    font-weight: 700;
     box-shadow: 0 0px 3px rgba(0,0,0, .25);
     @media only screen and (max-width: $TABLETS) {
         font-size: 15px;
     }
     &--primary{
-        @include defineButtonColor($PRIMARY-COLOR, $WHITE-COLOR);
-    }
-    &--secondary{
-        @include defineButtonColor($WHITE-COLOR, $PRIMARY-COLOR);
-        &--outlined{
-            border: 2px solid $PRIMARY-COLOR;
-        }
+        @include defineButtonColor($PRIMARY-COLOR-REDUCED, $PRIMARY-COLOR, $WHITE-COLOR,);
     }
 }
