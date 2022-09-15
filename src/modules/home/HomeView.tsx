@@ -35,7 +35,7 @@ function HomeView() {
   return (
     <div className="min-h-screen p-12">
       <AutoComplete
-        apiKey="AIzaSyBsv-6iT9vli_YJtGF5DQH0iI4ypR2MqGE"
+        apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
         onPlaceSelected={onPlaceSelected}
         language="en"
       />
