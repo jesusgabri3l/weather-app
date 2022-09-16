@@ -3,6 +3,8 @@ import BaseLoader from '../../components/base/BaseLoader';
 import { useAuthIn } from './hooks/useAuth';
 
 function LoginView() {
+  // Hook for doing all the authIn config with Google
+  // It is returning a signIn that works as an event and does the whole Google auth in
   const { signIn, loading } = useAuthIn();
 
   return (

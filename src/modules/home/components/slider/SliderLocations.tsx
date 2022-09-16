@@ -2,17 +2,21 @@ import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import getSliderSettings from './settingsSlider';
-import SliderLocationsItem from './SliderLocationsItem';
+import SliderLocationsItem from './sliderItem/SliderLocationsItem';
 
 function SliderLocations() {
   const locations = useSelector((state: any) => state.location.yourLocations);
+  // Settings for the slider
   const settings = getSliderSettings(locations);
   return (
     <>
       {locations.length > 0 ? (
         <Slider {...settings}>
           {locations.map((location: any) => (
-            <SliderLocationsItem location={location} key={location.basicInfo.lat} />
+            <SliderLocationsItem
+              location={location.basicInfo}
+              key={location.basicInfo.lat}
+            />
           ))}
         </Slider>
       ) : (

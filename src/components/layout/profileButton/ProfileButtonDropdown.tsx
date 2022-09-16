@@ -1,5 +1,6 @@
 import { useAuthOut } from '../../../modules/login/hooks/useAuth';
 function ProfileButtonDropdown({ active, closeDropdwon }: any) {
+  // Hooks for the whole logout configuration
   const authOut = useAuthOut();
   return (
     <div className={`profile__dropdown rounded-lg ${active && 'active'}`}>
