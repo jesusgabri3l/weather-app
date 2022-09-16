@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
+import TheLayout from './components/layout/TheLayout';
 import ProtectedRoute from './components/router/ProtectedRoute';
 import HomeView from './modules/home/HomeView';
 import LoginView from './modules/login/LoginView';
@@ -9,15 +10,17 @@ function App() {
     <div className="main-wrapper">
       <HashRouter>
         <Routes>
-          <Route path="/" element={<LoginView />} />
-          <Route
-            path="home"
-            element={
-              <ProtectedRoute>
-                <HomeView />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="login" element={<LoginView />} />
+          <Route path="/" element={<TheLayout />}>
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <HomeView />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
         </Routes>
       </HashRouter>
     </div>

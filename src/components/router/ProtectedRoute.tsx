@@ -10,7 +10,7 @@ interface Props {
 function ProtectedRoute({ children }: Props) {
   const user = useSelector((state: any) => state.user.userInfo);
   const location = useLocation();
-  if (!user.googleId) return <Navigate to="/" state={{ from: location }} replace />;
+  if (!user.googleId) return <Navigate to="login" state={{ from: location }} replace />;
   return children;
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-function SlideItem({ location }: any) {
+function SliderLocationsItem({ location }: any) {
   const [weather, setWeather] = useState<any>(null);
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -94,4 +94,4 @@ function SlideItem({ location }: any) {
   );
 }
 
-export default SlideItem;
+export default SliderLocationsItem;
