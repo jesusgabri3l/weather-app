@@ -1,37 +1,38 @@
-# Vite + React + Typescript + Eslint + Prettier
+# Weather app
+Weather app, it allows you to add locations to your favourites and see all the weather data related to it. 
+**IMPORTANT**: 
+- It is not possible to do the 'checker' module because i am using a free weather api therefore i have limited api calls per day.
+- I am using Typescript, but i am not doing types verification.
+## Features
+- Google authentication
+- Google Search-autocomplete for searching different locations
+- Add a location to your favourites and then see weather related data
+- Add and modify criterias to each location
+- Alertes will show based on the previous criteria
 
-A starter for React with Typescript with the fast Vite and all static code testing with Eslint and formatting with Prettier.
+## Tech
+- [React18](https://reactjs.org/)
+- [Redux - Toolkit](https://redux-toolkit.js.org/)
+- [Vite](https://vitejs.dev/guide/why.html)
+- [Google Cloud](https://cloud.google.com/) - Used for the authentication and locations autocomplete
+- [Google Places API](https://developers.google.com/maps/documentation/places/web-service)
+- [Tailwind](https://markus.oberlehner.net/blog/vue-project-directory-structure-keep-it-flat-or-group-by-domain/)
+- [SCSS](https://sass-lang.com/guide)
 
-![Vite + React + Typescript + Eslint + Prettier](/resources/screenshot.png)
+## Folder structure
+- [7-1 for the SCSS architecture](https://sass-guidelin.es/es/#arquitectura)
+- [A DDD based architecture](https://css-tricks.com/domain-driven-design-with-react/)
 
-I found out about Vite and I wanted to have a boilerplate for the technologies that I use. You can find more about these in the following links: [Vite](https://github.com/vitejs/vite), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/).
+## Conventions
+- [Vue Style Guide](https://vuejs.org/style-guide/) - I know i am working on React, but i am a huge fan of Vue.js, therefore i am using their style guid convetion, i think some of then would apply to frontend development generally speaking.
 
 ## Installation
 
-Clone the repo and run `yarn install`
+Install the dependencies and devDependencies and start the server.
 
-or Run command
-
+```sh
+cd weather-app
+npm i
+npm run dev
 ```
-npx degit TheSwordBreaker/vite-reactts-eslint-prettier project-name
-```
 
-## Start
-
-After the successfull installation of the packages: `yarn dev`
-
-## Steps in Vscode
-
-#### (works with better with this template)
-
-1. Install Eslint and prettier extension for vs code.
-2. Make Sure Both are enabled
-3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
-4. Enable formatOnSave of vs code
-5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
-
-![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
-
-If Everything is Good Then It Should Work, but let me new if something else happens
-
-Made with ❤️ by theSwordBreaker(we Destory all types of sword ⚡)

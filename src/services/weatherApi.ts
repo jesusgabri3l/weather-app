@@ -10,6 +10,6 @@ export const api = axios.create({
 export default {
   URL,
   getWeatherByLocation(lat: number, lng: number): Promise<AxiosResponse> {
-    return api.get(`?appid=${apiKey}&lat=${lat}&lon=${lng}`);
+    return api.get(`?appid=${apiKey}&lat=${lat}&lon=${lng}&units=metric`);
   },
 };
