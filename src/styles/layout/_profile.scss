@@ -1,0 +1,72 @@
+
+.profile{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    @media only screen and (max-width: $S-TABLETS) {
+        bottom: 0;
+    }
+    &__img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        @media only screen and (max-width: $S-TABLETS) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    &__dropdown{
+        position: absolute;
+        right: 40px;
+        top: 40px;
+        background: $ELEMENT-COLOR;
+        padding: 15px 20px;
+        width: 200px;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0.5;
+        transition: 0.6s all;
+        box-shadow: 0 3px 6px rgba(0,0,0, .25);
+        
+        @media only screen and (max-width: $S-TABLETS) {
+            width:100vw;
+            right: -30px;
+            top: -20px;
+            padding-top: 30px;
+        }
+        &.active{
+            top: 50px;
+            right: 50px;
+            pointer-events:all;
+            visibility: visible;
+            opacity: 1;
+        @media only screen and (max-width: $S-TABLETS) {
+            right: -30px;
+            top: 0;
+        }
+        }
+        &__close{
+            position: absolute;
+            right: 30px;
+            top: 10px;
+            color: $GRAY-COLOR;
+            display: none;
+            @media only screen and (max-width: $S-TABLETS) {
+                display: block;
+            }
+        }
+        &__list{
+            &__item{
+                cursor: pointer;
+                padding: 10px 20px;
+                color: $GRAY-COLOR;
+                transition: 0.2s all;
+                &:hover{
+                    background-color: $HOVER-ELEMENT-COLOR;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

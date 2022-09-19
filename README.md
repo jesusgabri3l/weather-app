@@ -6,7 +6,6 @@ Weather app, it allows you to add locations to your favourites and see all the w
 - It is not possible to do the 'checker' module because i am using a free weather api therefore i have limited api calls per day.
 - I am using Typescript, but i am not doing types verification.
 
-
 ## Features
 
 - Google authentication
@@ -32,7 +31,7 @@ Weather app, it allows you to add locations to your favourites and see all the w
 
 ## Conventions
 
-- [Vue Style Guide](https://vuejs.org/style-guide/) - I know i am working on React, but i am a huge fan of Vue.js, therefore i am using their style guid convetion, i think some of then would apply to frontend development generally speaking.
+- [Vue Style Guide](https://vuejs.org/style-guide/) - I know i am working on React, but i am a huge fan of Vue.js, therefore i am using their style guide convetion, i think some of then would apply to frontend development generally speaking.
 - I am using `function componentName()` for UI components, and `const hookName = () => {}` for logical components, like hooks.
 
 ## Installation

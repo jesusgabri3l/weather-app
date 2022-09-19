@@ -9,7 +9,7 @@ function HomeView() {
       <div className=" w-full md:w-2/5">
         <BaseGoogleSearch onPlaceSelected={onPlaceSelected} />
       </div>
-      <div className="mb-2 mt-16">
+      <div className="mb-2 mt-12">
         <h1 className="text-white text-3xl font-bold tracking-wider inline-block md:text-4xl">
           Your selected <span className="text-primary">locations</span>
           <img

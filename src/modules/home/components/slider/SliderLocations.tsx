@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
+import BaseAlert from '../../../../components/base/BaseInfoAlert';
 import getSliderSettings from './settingsSlider';
 import SliderLocationsItem from './sliderItem/SliderLocationsItem';
 
@@ -12,15 +13,19 @@ function SliderLocations() {
     <>
       {locations.length > 0 ? (
         <Slider {...settings}>
-          {locations.map((location: any) => (
+          {locations.map((location: any, index: number) => (
             <SliderLocationsItem
               location={location.basicInfo}
+              index={index}
               key={location.basicInfo.lat}
             />
           ))}
         </Slider>
       ) : (
-        <p className="text-white">You dont have locations yet</p>
+        <BaseAlert
+          title="Looks like you do not have any favourite location yet"
+          description="You can add one by searching for a location on the input above"
+        />
       )}
     </>
   );

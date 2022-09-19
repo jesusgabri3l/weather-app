@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
+
 import BaseLoader from '../../../../../components/base/BaseLoader';
 import SliderLocationsItemLabel from './SliderLocationsItemLabel';
 import { useFetchWeather } from './useFetchWeather';
 
-function SliderLocationsItem({ location }: any) {
+function SliderLocationsItem({ location, index }: any) {
   const { loading, weather } = useFetchWeather({ lat: location.lat, lng: location.lng });
   return (
     <div className="p-6 pb-16 rounded-lg card md:p-8">
@@ -70,9 +72,9 @@ function SliderLocationsItem({ location }: any) {
           </div>
         </div>
       )}
-      <button className="card__settings">
+      <Link className="card__settings" to={`settings/${index}`}>
         <i className="fa-solid fa-gears"></i>
-      </button>
+      </Link>
     </div>
   );
 }

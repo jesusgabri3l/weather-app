@@ -1,0 +1,10 @@
+.main-wrapper{
+    background-color: $BACKGROUND-COLOR;
+    min-height: 100vh;
+}
+.flex-center{
+    @include flex-center;
+}
+.bg-element{
+    background-color: $ELEMENT-COLOR;
+}
