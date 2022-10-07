@@ -3,7 +3,10 @@ function ProfileButtonDropdown({ active, closeDropdwon }: any) {
   // Hooks for the whole logout configuration
   const authOut = useAuthOut();
   return (
-    <div className={`profile__dropdown rounded-lg ${active && 'active'}`}>
+    <div
+      className={`profile__dropdown rounded-lg ${active && 'active'}`}
+      data-testid="profile-dropdown-test"
+    >
       <ul className="profile__dropdown__list">
         <button className="profile__dropdown__list__item rounded-lg mb-2 w-full text-left">
           <i className="fa-solid fa-gears mr-2"></i>

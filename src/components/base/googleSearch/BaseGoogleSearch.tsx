@@ -12,6 +12,7 @@ function BaseGoogleSearch({ onPlaceSelected: onPlaceSelectedCallback }: any) {
         ref={inputRef}
         value={value}
         onChange={(e: any) => setValue(e.target.value)}
+        data-testid="google-input"
       />
       <i className="fa fa-search" />
     </div>

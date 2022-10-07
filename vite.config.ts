@@ -5,4 +5,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: '/weather-app/',
   plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/__test__/setup.ts',
+  },
 });

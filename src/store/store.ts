@@ -1,11 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
 
 import locationSlice from './location/locationSlice';
 import userSlice from './user/userSlice';
 
-export default configureStore({
-  reducer: {
-    user: userSlice,
-    location: locationSlice,
-  },
+const rootReducer = combineReducers({
+  user: userSlice,
+  location: locationSlice,
 });
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+};
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];

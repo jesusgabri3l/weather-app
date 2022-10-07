@@ -7,7 +7,10 @@ import { useFetchWeather } from './useFetchWeather';
 function SliderLocationsItem({ location, index }: any) {
   const { loading, weather } = useFetchWeather({ lat: location.lat, lng: location.lng });
   return (
-    <div className="p-6 pb-16 rounded-lg card md:p-8">
+    <div
+      className="p-6 pb-16 rounded-lg card md:p-8"
+      data-testid={`slider-item-${index}`}
+    >
       <div className="w-full md:w-3/5">
         <h3 className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl">
           {/* Position 0 for the most specific location, for example :  Miami*/}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-//import { useInterval } from 'usehooks-ts';
 import weatherApi from '../../../../../services/weatherApi';
 export const useFetchWeather = ({ lat, lng }: { lat: number; lng: number }) => {
   const [weather, setWeather] = useState<any>(null);
@@ -20,7 +19,5 @@ export const useFetchWeather = ({ lat, lng }: { lat: number; lng: number }) => {
   useEffect(() => {
     getWeatherInfo();
   }, []);
-
-  //useInterval(getWeatherInfo,);
   return { weather, loading };
 };
