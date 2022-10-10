@@ -12,7 +12,10 @@ function SliderLocationsItem({ location, index }: any) {
       data-testid={`slider-item-${index}`}
     >
       <div className="w-full md:w-3/5">
-        <h3 className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl">
+        <h3
+          className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl"
+          data-testid="location-weather-test"
+        >
           {/* Position 0 for the most specific location, for example :  Miami*/}
           {location.address_components[0].long_name}
         </h3>
@@ -37,7 +40,10 @@ function SliderLocationsItem({ location, index }: any) {
         <div className="w-full md:w-2/5">
           <div className="flex items-end md:flex-col">
             <div className="flex items-center">
-              <h3 className="text-white text-xl font-bold tracking-wide truncate w-4/5 inline-block md:text-2xl">
+              <h3
+                className="text-white text-xl font-bold tracking-wide truncate w-4/5 inline-block md:text-2xl"
+                data-testid="main-weather-test"
+              >
                 {weather.weather[0].main}
               </h3>
               <img

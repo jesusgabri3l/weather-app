@@ -1,5 +1,5 @@
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import HomeView from '../../modules/home/HomeView';
@@ -7,18 +7,15 @@ import locationReducer, { addLocation } from '../../store/location/locationSlice
 import { setupStore } from '../../store/store';
 import { setUserInfo } from '../../store/user/userSlice';
 import { BarranquillaLocation } from '../mocks/locations';
+import { user } from '../mocks/user';
 import { renderWithProviders } from '../utils/renderWithRedux';
 
-beforeEach(() => {
-  const store = setupStore();
-  store.dispatch(
-    setUserInfo({
-      googleId: '12345678',
-      imageUrl:
-        'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png',
-    }),
-  );
-  renderWithProviders(<HomeView />, { store });
+beforeEach((context) => {
+  if (context.meta.name != 'Should validate a valid location on the array') {
+    const store = setupStore();
+    store.dispatch(setUserInfo(user));
+    renderWithProviders(<HomeView />, { store });
+  }
 });
 
 describe('HomeView DOM Validation', () => {
@@ -39,5 +36,28 @@ describe('HomeView DOM Validation', () => {
     expect(
       screen.getByText('Looks like you do not have any favourite location yet'),
     ).toBeInTheDocument();
+  });
+
+  it('Should validate a valid location on the array', async () => {
+    const store = setupStore();
+    store.dispatch(setUserInfo(user));
+    store.dispatch(addLocation(BarranquillaLocation));
+
+    renderWithProviders(
+      <MemoryRouter>
+        <HomeView />
+      </MemoryRouter>,
+      { store },
+    );
+    expect(store.getState().location.yourLocations).toHaveLength(1);
+    expect(screen.getByTestId('slider-item-0')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-test')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.getByTestId('loading-test'));
+    expect(await screen.findByTestId('main-weather-test')).toHaveTextContent('Clouds');
+    expect(await screen.findByTestId('location-weather-test')).toHaveTextContent(
+      'Barranquilla',
+    );
+    expect(await screen.findByText('27.76 ° c')).toBeInTheDocument();
+    expect(await screen.findByText('31.23 ° c')).toBeInTheDocument();
   });
 });

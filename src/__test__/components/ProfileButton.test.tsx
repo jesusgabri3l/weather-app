@@ -36,7 +36,7 @@ describe('ProfileButton DOM Validation', () => {
     expect(screen.getByTestId('profile-dropdown-test')).not.toHaveClass('active');
   });
 
-  it('Should validate button click and and active dropdown', async () => {
+  it('Should validate button click and an active dropdown', async () => {
     const button = screen.getByTestId('profile-button-test');
     await userEvent.click(button);
     expect(screen.getByTestId('profile-dropdown-test')).toHaveClass('active');
