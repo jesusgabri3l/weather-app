@@ -17,7 +17,7 @@ gapi.load('client:auth2', () => {
   });
 });
 
-// HOOK FOR AUTH IN TO THE APPLICATION
+// HOOK FOR AUTH-IN TO THE APPLICATION
 export const useAuthIn = () => {
   // VARIABLES FOR THE AUTH PROCESS
   const [loading, setLoading] = useState(true);
@@ -34,12 +34,14 @@ export const useAuthIn = () => {
   const onAutoLoadFinished = () => setLoading(false);
   const onRequest = () => setLoading(true);
   const onFailure = () => setLoading(false);
+  const onScriptLoadFailure = () => setLoading(false);
   // SIGN IN AUTH MAIN METHOD
   const { signIn } = useGoogleLogin({
     onSuccess,
     onFailure,
     onAutoLoadFinished,
     onRequest,
+    onScriptLoadFailure,
     clientId,
     isSignedIn: true,
     accessType: 'offline',

@@ -8,10 +8,6 @@ function ProfileButtonDropdown({ active, closeDropdwon }: any) {
       data-testid="profile-dropdown-test"
     >
       <ul className="profile__dropdown__list">
-        <button className="profile__dropdown__list__item rounded-lg mb-2 w-full text-left">
-          <i className="fa-solid fa-gears mr-2"></i>
-          <span className="profile__dropdown__list__item__text">Settings</span>
-        </button>
         <button
           className="profile__dropdown__list__item rounded-lg mt-2 w-full text-left"
           onClick={authOut}
