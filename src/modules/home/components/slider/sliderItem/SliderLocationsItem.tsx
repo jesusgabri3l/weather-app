@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import BaseLoader from '../../../../../components/base/BaseLoader';
 import SliderLocationsItemLabel from './SliderLocationsItemLabel';
 import { useFetchWeather } from './useFetchWeather';
@@ -81,9 +79,6 @@ function SliderLocationsItem({ location, index }: any) {
           </div>
         </div>
       )}
-      <Link className="card__settings" to={`settings/${index}`}>
-        <i className="fa-solid fa-gears"></i>
-      </Link>
     </div>
   );
 }

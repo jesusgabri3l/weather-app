@@ -50,6 +50,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^20.0.1",
     "msw": "^0.47.4",
+    "oauth2-mock-server": "^5.0.1",
     "postcss": "^8.4.16",
     "pre-commit": "^1.2.2",
     "prettier": "^2.5.1",

@@ -4,7 +4,6 @@ import TheLayout from './components/layout/TheLayout';
 import ProtectedRoute from './components/router/ProtectedRoute';
 import HomeView from './modules/home/HomeView';
 import LoginView from './modules/login/LoginView';
-import SettingsView from './modules/settings/SettingsView';
 
 function App() {
   return (
@@ -18,14 +17,6 @@ function App() {
               element={
                 <ProtectedRoute>
                   <HomeView />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="settings/:index"
-              element={
-                <ProtectedRoute>
-                  <SettingsView />
                 </ProtectedRoute>
               }
             />

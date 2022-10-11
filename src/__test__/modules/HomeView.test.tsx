@@ -18,7 +18,7 @@ beforeEach((context) => {
   }
 });
 
-describe('HomeView DOM Validation', () => {
+describe('HomeView Validation', () => {
   it('Should validate main components in the HomeView', () => {
     const HomeViewWrapper = screen.getByTestId('homeview-wrapper');
 

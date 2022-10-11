@@ -24,6 +24,21 @@ export const restHandlers = [
     //const locationLng = req.url.searchParams.get('lon');
     return res(ctx.status(200), ctx.json(BarranquillaWeatherService));
   }),
+  rest.get(
+    'https://accounts.google.com/o/oauth2/iframerpc?action=checkOrigin&origin=http://localhost:3000&client_id=467817508495-gjud3su6qr8slg3v3q80iom0nhc6e3j8.apps.googleusercontent.com',
+    (req, res, ctx) => {
+      //const locationLat = req.url.searchParams.get('lat');
+      //const locationLng = req.url.searchParams.get('lon');
+      return res(
+        ctx.status(200),
+        ctx.json({
+          valid: true,
+          blocked: true,
+          suppressed: false,
+        }),
+      );
+    },
+  ),
 ];
 const server = setupServer(...restHandlers);
 
