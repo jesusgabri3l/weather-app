@@ -3,8 +3,15 @@ interface Props {
   measure: number;
   unit: string;
   getColor?: boolean;
+  hero?: boolean;
 }
-function SliderLocationsItemLabel({ label, measure, unit, getColor = false }: Props) {
+function SliderLocationsItemLabel({
+  label,
+  measure,
+  unit,
+  getColor = false,
+  hero = false,
+}: Props) {
   const getColorByTemperature = (temp: number) => {
     if (measure <= 10) return 'text-super-cold';
     if (measure > 10 && temp <= 20) return 'text-cold';
@@ -12,10 +19,10 @@ function SliderLocationsItemLabel({ label, measure, unit, getColor = false }: Pr
     if (measure > 30) return 'text-hot';
   };
   return (
-    <div className="flex items-center">
-      <p className="text-gray text-base font-medium">{label}: </p>
+    <div className={`flex items-center ${hero ? 'flex-col items-start md:items-end' : ''}`}>
+      <p className="text-gray text-base font-medium">{label}{hero ? '' : ':'}</p>
       <p
-        className={`text-lg ml-2 font-bold md:text-xl ${
+        className={`ml-2 font-bold ${hero ? 'weather-temp ml-0' : 'text-lg md:text-xl'} ${
           getColor ? getColorByTemperature(measure) : 'text-white'
         }`}
       >

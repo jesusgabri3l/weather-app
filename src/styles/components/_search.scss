@@ -6,44 +6,70 @@
     width: 100%;
     display: flex;
     background-color: $ELEMENT-COLOR;
-    padding: 0 20px;
+    border: 1px solid $GLASS-BORDER-COLOR;
+    backdrop-filter: blur($GLASS-BLUR);
+    -webkit-backdrop-filter: blur($GLASS-BLUR);
+    border-radius: 999px;
+    padding: 0 22px;
     justify-content: space-between;
     align-items: center;
     color: $GRAY-COLOR;
+    transition: 0.2s box-shadow, 0.2s border-color;
     @media only screen and (max-width: $S-TABLETS) {
         width: 100%;
         margin-top: 30px;
+    }
+    &:focus-within{
+        border-color: $PRIMARY-COLOR;
+        box-shadow: 0 0 0 3px $PRIMARY-COLOR-REDUCED;
     }
     &__input{
         outline: none;
         background-color:transparent;
         width: 95%;
         height: 100%;
-        padding: 10px 5px;
+        padding: 14px 5px;
         color: $WHITE-COLOR;
         font-weight: 500;
         font-size: 18px;
         @media only screen and (max-width: $S-TABLETS) {
             font-size: 16px;
         }
+        &::placeholder{
+            color: $GRAY-COLOR;
+        }
     }
     &__suggestions{
         position: absolute;
         z-index: 10;
-        top: calc(100% + 6px);
+        top: calc(100% + 10px);
         left: 0;
         width: 100%;
-        background-color: $ELEMENT-COLOR;
-        box-shadow: 0 3px 6px rgba(0,0,0, .25);
+        background-color: $BACKGROUND-COLOR-ALT;
+        border: 1px solid $GLASS-BORDER-COLOR;
+        backdrop-filter: blur($GLASS-BLUR);
+        -webkit-backdrop-filter: blur($GLASS-BLUR);
+        border-radius: 20px;
         overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0,0,0, .35);
         &__item{
-            padding: 12px 20px;
+            display: block;
+            width: 100%;
+            border: none;
+            background: none;
+            text-align: left;
+            padding: 14px 22px;
             color: $GRAY-COLOR;
+            font-size: 16px;
             cursor: pointer;
-            transition: 0.2s all;
-            &:hover{
+            transition: 0.15s background-color;
+            &:hover, &:focus-visible{
                 background-color: $HOVER-ELEMENT-COLOR;
                 color: $WHITE-COLOR;
+            }
+            &:focus-visible{
+                outline: 2px solid $PRIMARY-COLOR;
+                outline-offset: -2px;
             }
         }
     }

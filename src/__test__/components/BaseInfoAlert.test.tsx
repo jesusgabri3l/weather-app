@@ -11,7 +11,7 @@ it('BaseInfo Alert', () => {
   expect(alertWrapper).not.toBeEmptyDOMElement();
   expect(alertWrapper).toContainElement(title);
   expect(alertWrapper).toContainElement(description);
-  expect(alertWrapper).toHaveClass('bg-blue-100');
+  expect(alertWrapper).toHaveClass('bg-sky-400/10');
 
   expect(title).toHaveTextContent('Some test title');
   expect(description).toHaveTextContent('Some test description');

@@ -4,6 +4,7 @@ import ReactSlick from 'react-slick';
 import BaseAlert from '../../../../components/base/BaseInfoAlert';
 import type { RootState } from '../../../../store/store';
 import getSliderSettings from './settingsSlider';
+import SliderArrow from './SliderArrow';
 import SliderLocationsItem from './sliderItem/SliderLocationsItem';
 
 // react-slick is CJS-only; Vite's Rolldown dep optimizer doesn't unwrap its
@@ -18,7 +19,11 @@ function SliderLocations() {
   return (
     <>
       {locations.length > 0 ? (
-        <Slider {...settings}>
+        <Slider
+          {...settings}
+          prevArrow={<SliderArrow direction="prev" />}
+          nextArrow={<SliderArrow direction="next" />}
+        >
           {locations.map((location, index) => (
             <SliderLocationsItem location={location} index={index} key={location.id} />
           ))}

@@ -14,10 +14,7 @@ function SliderLocationsItem({ location, index }: Props) {
   const weatherInfo = weather ? describeWeatherCode(weather.weatherCode) : null;
 
   return (
-    <div
-      className="p-6 pb-16 rounded-lg card md:p-8"
-      data-testid={`slider-item-${index}`}
-    >
+    <div className="p-6 pb-16 card md:p-8" data-testid={`slider-item-${index}`}>
       <div className="w-full md:w-3/5">
         <h3
           className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl"
@@ -46,7 +43,7 @@ function SliderLocationsItem({ location, index }: Props) {
               >
                 {weatherInfo.description}
               </h3>
-              <span className="inline-block text-4xl ml-2" aria-hidden="true">
+              <span className="weather-icon inline-block ml-2" aria-hidden="true">
                 {weatherInfo.icon}
               </span>
             </div>
@@ -57,6 +54,7 @@ function SliderLocationsItem({ location, index }: Props) {
               measure={weather.temperature}
               getColor={true}
               unit="° c"
+              hero
             />
             <SliderLocationsItemLabel
               label="Feels like"

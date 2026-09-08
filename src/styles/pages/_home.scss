@@ -4,11 +4,21 @@
     position: relative;
     display: flex;
     background-color: $ELEMENT-COLOR;
+    border: 1px solid $GLASS-BORDER-COLOR;
+    backdrop-filter: blur($GLASS-BLUR);
+    -webkit-backdrop-filter: blur($GLASS-BLUR);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+    transition: 0.3s transform, 0.3s box-shadow;
     @media only screen and (max-width: $M-PHONE) {
         height: auto;
         flex-direction: column;
         position: relative;
       }
+    &:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, .4);
+    }
     &__settings{
         position: absolute;
         bottom: 20px;
@@ -19,5 +29,19 @@
             bottom: 8px;
             left: 20px;
         }
+    }
+}
+
+.weather-icon{
+    font-size: 44px;
+    line-height: 1;
+}
+
+.weather-temp{
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    @media only screen and (max-width: $M-PHONE) {
+        font-size: 32px;
     }
 }

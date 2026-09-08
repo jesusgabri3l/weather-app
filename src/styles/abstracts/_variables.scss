@@ -1,22 +1,30 @@
 //COLORS
-$BACKGROUND-COLOR : #121212;
-$ELEMENT-COLOR: #181818;
-$HOVER-ELEMENT-COLOR: #282828;
-$COMPLEMENT-COLOR : #000;
-$PRIMARY-COLOR : rgb(163, 212, 247);
-$PRIMARY-COLOR-REDUCED : rgb(163, 212, 247, .25);
-$WHITE-COLOR :#fff;
-$GRAY-COLOR : #b3b3b3;
+// Base palette from the "Weather App" product profile (sky blue + sun amber),
+// adapted to a dark navy surface instead of the original light background.
+$BACKGROUND-COLOR: #0b1120;
+$BACKGROUND-COLOR-ALT: #0f172a;
+$COMPLEMENT-COLOR: #000;
+$PRIMARY-COLOR: #7dd3fc;
+$PRIMARY-COLOR-REDUCED: rgba(56, 189, 248, 0.18);
+$ACCENT-COLOR: #f59e0b;
+$WHITE-COLOR: #fff;
+$GRAY-COLOR: #94a3b8;
 
-$SUPER-COLD-COLOR: #3498db;
-$COLD-COLOR: #2980b9;
-$AVG-COLOR: #e67e22;
-$HOT-COLOR: #e74c3c;
+// Glass surfaces (cards, search bar, dropdowns)
+$ELEMENT-COLOR: rgba(255, 255, 255, 0.06);
+$HOVER-ELEMENT-COLOR: rgba(255, 255, 255, 0.12);
+$GLASS-BORDER-COLOR: rgba(255, 255, 255, 0.14);
+$GLASS-BLUR: 18px;
+
+$SUPER-COLD-COLOR: #38bdf8;
+$COLD-COLOR: #60a5fa;
+$AVG-COLOR: #f59e0b;
+$HOT-COLOR: #f87171;
 
 //BREAK-POINTS
 $LG-DESKTOP: 1920px;
 $MD-DESKTOP: 1280px;
-$TABLETS : 1024px;
-$S-TABLETS : 895px;
+$TABLETS: 1024px;
+$S-TABLETS: 895px;
 $M-PHONE: 767px;
-$S-PHONE : 330px;
+$S-PHONE: 330px;
