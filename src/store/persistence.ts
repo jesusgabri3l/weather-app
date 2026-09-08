@@ -20,7 +20,7 @@ function isSavedLocationArray(value: unknown): value is SavedLocation[] {
 
 export function loadPersistedState(): Partial<RootState> | undefined {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return undefined;
 
     const parsed: unknown = JSON.parse(raw);
@@ -34,8 +34,8 @@ export function loadPersistedState(): Partial<RootState> | undefined {
 
 export function persistLocationState(state: RootState): void {
   try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state.location.yourLocations));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.location.yourLocations));
   } catch {
-    // sessionStorage unavailable (privacy mode, quota exceeded) — skip silently
+    // localStorage unavailable (privacy mode, quota exceeded) — skip silently
   }
 }

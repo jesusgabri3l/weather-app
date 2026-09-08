@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import { loadPersistedState, persistLocationState } from './store/sessionPersistence';
+import { loadPersistedState, persistLocationState } from './store/persistence';
 import { setupStore } from './store/store';
 
 const store = setupStore(loadPersistedState());

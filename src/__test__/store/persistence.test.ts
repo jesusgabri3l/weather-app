@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { loadPersistedState, persistLocationState } from '../../store/sessionPersistence';
+import { loadPersistedState, persistLocationState } from '../../store/persistence';
 import type { RootState } from '../../store/store';
 import { BarranquillaLocation } from '../mocks/locations';
 
@@ -14,15 +14,15 @@ const savedLocation = {
 };
 
 beforeEach(() => {
-  sessionStorage.clear();
+  localStorage.clear();
 });
 
-describe('sessionPersistence', () => {
+describe('persistence', () => {
   it('returns undefined when nothing was persisted yet', () => {
     expect(loadPersistedState()).toBeUndefined();
   });
 
-  it('round-trips saved locations through sessionStorage', () => {
+  it('round-trips saved locations through localStorage', () => {
     const state = { location: { yourLocations: [savedLocation] } } as RootState;
     persistLocationState(state);
 
@@ -30,10 +30,10 @@ describe('sessionPersistence', () => {
   });
 
   it('ignores malformed data instead of crashing', () => {
-    sessionStorage.setItem('weather-app:locations', 'not json');
+    localStorage.setItem('weather-app:locations', 'not json');
     expect(loadPersistedState()).toBeUndefined();
 
-    sessionStorage.setItem('weather-app:locations', JSON.stringify([{ foo: 'bar' }]));
+    localStorage.setItem('weather-app:locations', JSON.stringify([{ foo: 'bar' }]));
     expect(loadPersistedState()).toBeUndefined();
   });
 });

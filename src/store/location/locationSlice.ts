@@ -29,9 +29,14 @@ export const locationSlice = createSlice({
       if (alreadySaved) return;
       state.yourLocations.push({ id, name, admin1, country, lat: latitude, lng: longitude });
     },
+    removeLocation: (state, action: PayloadAction<number>) => {
+      state.yourLocations = state.yourLocations.filter(
+        (location) => location.id !== action.payload,
+      );
+    },
   },
 });
 
-export const { addLocation } = locationSlice.actions;
+export const { addLocation, removeLocation } = locationSlice.actions;
 
 export default locationSlice.reducer;

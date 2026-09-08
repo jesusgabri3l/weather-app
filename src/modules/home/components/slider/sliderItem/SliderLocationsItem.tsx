@@ -1,5 +1,8 @@
+import type { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
+
 import BaseLoader from '../../../../../components/base/BaseLoader';
-import type { SavedLocation } from '../../../../../store/location/locationSlice';
+import { removeLocation, type SavedLocation } from '../../../../../store/location/locationSlice';
 import { describeWeatherCode } from '../../../../../utils/weatherCode';
 import SliderLocationsItemLabel from './SliderLocationsItemLabel';
 import { useFetchWeather } from './useFetchWeather';
@@ -10,11 +13,28 @@ interface Props {
 }
 
 function SliderLocationsItem({ location, index }: Props) {
+  const dispatch = useDispatch();
   const { loading, weather } = useFetchWeather({ lat: location.lat, lng: location.lng });
   const weatherInfo = weather ? describeWeatherCode(weather.weatherCode) : null;
 
+  const handleRemove = (event: MouseEvent) => {
+    // Slick binds a click handler on the slide (focusOnSelect) to select it;
+    // without this, removing a card also re-triggers slide selection.
+    event.stopPropagation();
+    dispatch(removeLocation(location.id));
+  };
+
   return (
     <div className="p-6 pb-16 card md:p-8" data-testid={`slider-item-${index}`}>
+      <button
+        type="button"
+        className="card__remove"
+        onClick={handleRemove}
+        aria-label={`Remove ${location.name}`}
+        data-testid={`remove-location-${index}`}
+      >
+        <i className="fa fa-xmark" aria-hidden="true" />
+      </button>
       <div className="w-full md:w-3/5">
         <h3
           className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl"

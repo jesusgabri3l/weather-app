@@ -28,6 +28,12 @@
     &::before{
         content: none !important;
     }
+    // slick-theme sets font-size:0 on .slick-prev/.slick-next (it relies on
+    // ::before for the glyph); that 0 inherits into our real <i> icon and
+    // collapses it to invisible, so the icon needs its own explicit size.
+    i{
+        font-size: 18px;
+    }
     &:hover{
         background-color: $HOVER-ELEMENT-COLOR;
     }
@@ -54,18 +60,18 @@
 }
 
 .slick-dots{
-    bottom: -34px;
+    bottom: -36px;
     li{
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
         margin: 0 6px;
         button{
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             &:before{
-                font-size: 10px;
+                font-size: 14px;
                 color: $GRAY-COLOR;
-                opacity: 0.5;
+                opacity: 0.6;
             }
         }
         &.slick-active button:before{
