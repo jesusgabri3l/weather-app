@@ -1,12 +1,10 @@
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll } from 'vitest';
 
-import { BarranquillaWeatherService } from './mocks/locations';
-
-const apiURL: string = import.meta.env.VITE_WEATHER_API as string;
+import { BarranquillaForecastResponse, BarranquillaGeocodingResponse } from './mocks/locations';
 
 window.matchMedia =
   window.matchMedia ||
@@ -19,26 +17,12 @@ window.matchMedia =
   };
 
 export const restHandlers = [
-  rest.get(`${apiURL}`, (req, res, ctx) => {
-    //const locationLat = req.url.searchParams.get('lat');
-    //const locationLng = req.url.searchParams.get('lon');
-    return res(ctx.status(200), ctx.json(BarranquillaWeatherService));
+  http.get('https://geocoding-api.open-meteo.com/v1/search', () => {
+    return HttpResponse.json(BarranquillaGeocodingResponse);
   }),
-  rest.get(
-    'https://accounts.google.com/o/oauth2/iframerpc?action=checkOrigin&origin=http://localhost:3000&client_id=467817508495-gjud3su6qr8slg3v3q80iom0nhc6e3j8.apps.googleusercontent.com',
-    (req, res, ctx) => {
-      //const locationLat = req.url.searchParams.get('lat');
-      //const locationLng = req.url.searchParams.get('lon');
-      return res(
-        ctx.status(200),
-        ctx.json({
-          valid: true,
-          blocked: true,
-          suppressed: false,
-        }),
-      );
-    },
-  ),
+  http.get('https://api.open-meteo.com/v1/forecast', () => {
+    return HttpResponse.json(BarranquillaForecastResponse);
+  }),
 ];
 const server = setupServer(...restHandlers);
 

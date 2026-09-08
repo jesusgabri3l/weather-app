@@ -1,3 +1,7 @@
+.search-wrapper{
+    position: relative;
+    width: 100%;
+}
 .search{
     width: 100%;
     display: flex;
@@ -23,5 +27,24 @@
             font-size: 16px;
         }
     }
+    &__suggestions{
+        position: absolute;
+        z-index: 10;
+        top: calc(100% + 6px);
+        left: 0;
+        width: 100%;
+        background-color: $ELEMENT-COLOR;
+        box-shadow: 0 3px 6px rgba(0,0,0, .25);
+        overflow: hidden;
+        &__item{
+            padding: 12px 20px;
+            color: $GRAY-COLOR;
+            cursor: pointer;
+            transition: 0.2s all;
+            &:hover{
+                background-color: $HOVER-ELEMENT-COLOR;
+                color: $WHITE-COLOR;
+            }
+        }
+    }
 }
-

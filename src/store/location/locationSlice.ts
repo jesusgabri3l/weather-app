@@ -1,18 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-function createLocation({ address_components, lat, lng }: any) {
-  return { basicInfo: { address_components, lat, lng }, criteria: [] };
+import type { GeocodingResult } from '../../services/geocodingApi';
+
+export interface SavedLocation {
+  id: number;
+  name: string;
+  admin1?: string;
+  country?: string;
+  lat: number;
+  lng: number;
 }
+
+interface LocationState {
+  yourLocations: SavedLocation[];
+}
+
+const initialState: LocationState = {
+  yourLocations: [],
+};
 
 export const locationSlice = createSlice({
   name: 'location',
-  initialState: {
-    yourLocations: [],
-  },
+  initialState,
   reducers: {
-    addLocation: (state: any, action: any) => {
-      const { address_components, lat, lng } = action.payload;
-      state.yourLocations.push(createLocation({ address_components, lat, lng }));
+    addLocation: (state, action: PayloadAction<GeocodingResult>) => {
+      const { id, name, admin1, country, latitude, longitude } = action.payload;
+      const alreadySaved = state.yourLocations.some((location) => location.id === id);
+      if (alreadySaved) return;
+      state.yourLocations.push({ id, name, admin1, country, lat: latitude, lng: longitude });
     },
   },
 });

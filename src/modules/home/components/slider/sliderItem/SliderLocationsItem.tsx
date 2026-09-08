@@ -1,9 +1,18 @@
 import BaseLoader from '../../../../../components/base/BaseLoader';
+import type { SavedLocation } from '../../../../../store/location/locationSlice';
+import { describeWeatherCode } from '../../../../../utils/weatherCode';
 import SliderLocationsItemLabel from './SliderLocationsItemLabel';
 import { useFetchWeather } from './useFetchWeather';
 
-function SliderLocationsItem({ location, index }: any) {
+interface Props {
+  location: SavedLocation;
+  index: number;
+}
+
+function SliderLocationsItem({ location, index }: Props) {
   const { loading, weather } = useFetchWeather({ lat: location.lat, lng: location.lng });
+  const weatherInfo = weather ? describeWeatherCode(weather.weatherCode) : null;
+
   return (
     <div
       className="p-6 pb-16 rounded-lg card md:p-8"
@@ -14,25 +23,18 @@ function SliderLocationsItem({ location, index }: any) {
           className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl"
           data-testid="location-weather-test"
         >
-          {/* Position 0 for the most specific location, for example :  Miami*/}
-          {location.address_components[0].long_name}
+          {location.name}
         </h3>
-        {/* Position 2 for the region location, for example :  Florida
-          There are some cases where this does not appy, so position 2 would be the country
-        */}
-        <p className="text-gray font-bold text-lg truncate w-full md:text-xl">
-          {location.address_components[2].long_name}
-        </p>
-        {/* Position 3 for the country location, for example :  United States
-          There are some cases where this does not apply, so it is no needed
-        */}
-        {location.address_components.length > 3 && (
-          <p className="text-gray text-lg truncate w-full">
-            {location.address_components[3].long_name}
+        {location.admin1 && (
+          <p className="text-gray font-bold text-lg truncate w-full md:text-xl">
+            {location.admin1}
           </p>
         )}
+        {location.country && (
+          <p className="text-gray text-lg truncate w-full">{location.country}</p>
+        )}
       </div>
-      {loading ? (
+      {loading || !weather || !weatherInfo ? (
         <BaseLoader />
       ) : (
         <div className="w-full md:w-2/5">
@@ -42,39 +44,31 @@ function SliderLocationsItem({ location, index }: any) {
                 className="text-white text-xl font-bold tracking-wide truncate w-4/5 inline-block md:text-2xl"
                 data-testid="main-weather-test"
               >
-                {weather.weather[0].main}
+                {weatherInfo.description}
               </h3>
-              <img
-                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                alt="illustration"
-                className="inline"
-                width="80"
-                height="80"
-              />
+              <span className="inline-block text-4xl ml-2" aria-hidden="true">
+                {weatherInfo.icon}
+              </span>
             </div>
           </div>
           <div className="flex items-start flex-wrap gap-2.5 flex-col md:items-end">
             <SliderLocationsItemLabel
               label="Temperature"
-              measure={weather.main.temp}
+              measure={weather.temperature}
               getColor={true}
               unit="° c"
             />
             <SliderLocationsItemLabel
               label="Feels like"
-              measure={weather.main.feels_like}
+              measure={weather.feelsLike}
               getColor={true}
               unit="° c"
             />
-            <SliderLocationsItemLabel
-              label="Humidity"
-              measure={weather.main.humidity}
-              unit="%"
-            />
+            <SliderLocationsItemLabel label="Humidity" measure={weather.humidity} unit="%" />
             <SliderLocationsItemLabel
               label="Wind speed"
-              measure={weather.wind.speed}
-              unit="m/s"
+              measure={weather.windSpeed}
+              unit="km/h"
             />
           </div>
         </div>

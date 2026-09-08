@@ -1,13 +1,14 @@
 import location from '../../assets/location.svg';
-import BaseGoogleSearch from '../../components/base/googleSearch/BaseGoogleSearch';
+import LocationSearch from '../../components/base/locationSearch/LocationSearch';
 import SliderLocations from './components/slider/SliderLocations';
-import { useGoogleSearchOnPlaceSelected } from './hooks/useGoogleSearchOnPlaceSelected';
+import { useLocationSelected } from './hooks/useLocationSelected';
+
 function HomeView() {
-  const { onPlaceSelectedPushLocationToStore } = useGoogleSearchOnPlaceSelected();
+  const { onLocationSelected } = useLocationSelected();
   return (
     <div data-testid="homeview-wrapper">
       <div className=" w-full md:w-2/5">
-        <BaseGoogleSearch onPlaceSelected={onPlaceSelectedPushLocationToStore} />
+        <LocationSearch onLocationSelected={onLocationSelected} />
       </div>
       <div className="mb-2 mt-12" data-testid="title-wrapper-test">
         <h1

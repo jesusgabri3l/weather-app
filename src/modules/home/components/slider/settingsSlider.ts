@@ -1,5 +1,7 @@
+import type { SavedLocation } from '../../../../store/location/locationSlice';
+
 // Configuration for the slider
-const getSliderSettings = (locations: any) => {
+const getSliderSettings = (locations: SavedLocation[]) => {
   return {
     dots: true,
     infinite: true,

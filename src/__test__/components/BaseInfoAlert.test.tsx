@@ -8,7 +8,7 @@ it('BaseInfo Alert', () => {
   const title = screen.getByTestId('title');
   const description = screen.getByTestId('description');
   const alertWrapper = screen.getByRole('alert');
-  expect(alertWrapper).not.toBeEmptyDOMElement;
+  expect(alertWrapper).not.toBeEmptyDOMElement();
   expect(alertWrapper).toContainElement(title);
   expect(alertWrapper).toContainElement(description);
   expect(alertWrapper).toHaveClass('bg-blue-100');

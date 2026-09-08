@@ -1,13 +1,11 @@
-import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import locationSlice from './location/locationSlice';
-import userSlice from './user/userSlice';
 
 const rootReducer = combineReducers({
-  user: userSlice,
   location: locationSlice,
 });
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     preloadedState,
