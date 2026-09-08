@@ -19,7 +19,7 @@ function SliderLocationsItemLabel({
     if (measure > 30) return 'text-hot';
   };
   return (
-    <div className={`flex items-center ${hero ? 'flex-col items-start md:items-end' : ''}`}>
+    <div className={hero ? 'flex flex-col items-start md:items-end' : 'flex items-center'}>
       <p className="text-gray text-base font-medium">{label}{hero ? '' : ':'}</p>
       <p
         className={`ml-2 font-bold ${hero ? 'weather-temp ml-0' : 'text-lg md:text-xl'} ${

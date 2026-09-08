@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ReactSlick from 'react-slick';
 
@@ -16,10 +17,21 @@ function SliderLocations() {
   const locations = useSelector((state: RootState) => state.location.yourLocations);
   // Settings for the slider
   const settings = getSliderSettings(locations);
+  const sliderRef = useRef<InstanceType<typeof ReactSlick>>(null);
+  const previousCount = useRef(locations.length);
+
+  useEffect(() => {
+    if (locations.length > previousCount.current) {
+      sliderRef.current?.slickGoTo(locations.length - 1);
+    }
+    previousCount.current = locations.length;
+  }, [locations.length]);
+
   return (
     <>
       {locations.length > 0 ? (
         <Slider
+          ref={sliderRef}
           {...settings}
           prevArrow={<SliderArrow direction="prev" />}
           nextArrow={<SliderArrow direction="next" />}

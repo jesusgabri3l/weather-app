@@ -1,8 +1,10 @@
 .card{
     width: 100%;
-    height: 300px;
+    min-height: 260px;
     position: relative;
     display: flex;
+    align-items: flex-start;
+    overflow: hidden;
     background-color: $ELEMENT-COLOR;
     border: 1px solid $GLASS-BORDER-COLOR;
     backdrop-filter: blur($GLASS-BLUR);
@@ -11,10 +13,15 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
     transition: 0.3s transform, 0.3s box-shadow;
     @media only screen and (max-width: $M-PHONE) {
-        height: auto;
         flex-direction: column;
         position: relative;
       }
+    // Flex items default to min-width: auto, which ignores the w-3/5 / w-2/5
+    // widths below and lets their content (the temperature, the location
+    // name) push past the card's rounded border instead of truncating.
+    > div{
+        min-width: 0;
+    }
     &:hover{
         transform: translateY(-4px);
         box-shadow: 0 16px 36px rgba(0, 0, 0, .4);
@@ -33,15 +40,17 @@
 }
 
 .weather-icon{
-    font-size: 44px;
+    font-size: 36px;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .weather-temp{
     font-family: 'Outfit', sans-serif;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 1;
+    white-space: nowrap;
     @media only screen and (max-width: $M-PHONE) {
-        font-size: 32px;
+        font-size: 28px;
     }
 }
