@@ -35,7 +35,7 @@ function SliderLocationsItem({ location, index }: Props) {
       >
         <i className="fa fa-xmark" aria-hidden="true" />
       </button>
-      <div className="w-full md:w-3/5">
+      <div className="w-full pr-8">
         <h3
           className="text-white text-2xl font-bold tracking-wide truncate w-full md:text-3xl"
           data-testid="location-weather-test"
@@ -54,21 +54,19 @@ function SliderLocationsItem({ location, index }: Props) {
       {loading || !weather || !weatherInfo ? (
         <BaseLoader />
       ) : (
-        <div className="w-full md:w-2/5">
-          <div className="flex items-end md:flex-col">
-            <div className="flex items-center">
-              <h3
-                className="text-white text-xl font-bold tracking-wide truncate w-4/5 inline-block md:text-2xl"
-                data-testid="main-weather-test"
-              >
-                {weatherInfo.description}
-              </h3>
-              <span className="weather-icon inline-block ml-2" aria-hidden="true">
-                {weatherInfo.icon}
-              </span>
-            </div>
+        <div className="w-full mt-5">
+          <div className="flex items-center">
+            <h3
+              className="text-white text-xl font-bold tracking-wide truncate md:text-2xl"
+              data-testid="main-weather-test"
+            >
+              {weatherInfo.description}
+            </h3>
+            <span className="weather-icon inline-block ml-2" aria-hidden="true">
+              {weatherInfo.icon}
+            </span>
           </div>
-          <div className="flex items-start flex-wrap gap-2.5 flex-col md:items-end">
+          <div className="flex items-start flex-wrap gap-x-6 gap-y-2 mt-3">
             <SliderLocationsItemLabel
               label="Temperature"
               measure={weather.temperature}

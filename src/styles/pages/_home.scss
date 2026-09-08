@@ -1,9 +1,13 @@
 .card{
     width: 100%;
-    min-height: 260px;
+    min-height: 220px;
     position: relative;
     display: flex;
-    align-items: flex-start;
+    // Stacked (title block, then weather block) at every width — a
+    // side-by-side split broke down once the carousel showed 2-3 cards
+    // per view, since each card's own rendered width is much narrower
+    // than the viewport width Tailwind's md: breakpoint reasons about.
+    flex-direction: column;
     overflow: hidden;
     background-color: $ELEMENT-COLOR;
     border: 1px solid $GLASS-BORDER-COLOR;
@@ -12,13 +16,10 @@
     border-radius: 20px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
     transition: 0.3s transform, 0.3s box-shadow;
-    @media only screen and (max-width: $M-PHONE) {
-        flex-direction: column;
-        position: relative;
-      }
-    // Flex items default to min-width: auto, which ignores the w-3/5 / w-2/5
-    // widths below and lets their content (the temperature, the location
-    // name) push past the card's rounded border instead of truncating.
+    // Flex items default to min-width: auto, which ignores the width
+    // utilities below and lets their content (the temperature, the
+    // location name) push past the card's rounded border instead of
+    // truncating.
     > div{
         min-width: 0;
         max-width: 100%;
@@ -62,17 +63,6 @@
         &:focus-visible{
             outline: 2px solid $PRIMARY-COLOR;
             outline-offset: 2px;
-        }
-    }
-    &__settings{
-        position: absolute;
-        bottom: 20px;
-        left: 30px;
-        color: $GRAY-COLOR;
-        font-size: 24px;
-        @media only screen and (max-width: $M-PHONE) {
-            bottom: 8px;
-            left: 20px;
         }
     }
 }
